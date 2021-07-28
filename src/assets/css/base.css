@@ -1,0 +1,31 @@
+@import "normalize.css";
+
+:root{ /* html*/
+    --color-background:#fff;
+    --color-text: #666;
+    --colot-tint: #ff8198;
+    --font-size: 14px;
+    --color-higt-text: #ff5777
+}
+
+*,
+*::before,
+*::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei"
+    ,"微软雅黑",Arial,sans-serif;
+    user-select: none;  /*  禁止用户鼠标在界面上选中文字，图片等*/
+    background-color: var(--color-background);
+    color: var(--color-text);
+    width: 100vm;
+}
+
+a{
+    text-decoration: none;
+    color: var(--color-text);
+}
