@@ -19,5 +19,6 @@ export default {
   right: 0;
   height: 49px;
   background: #f0f0f0;
+  z-index: 9;
 }
 </style>

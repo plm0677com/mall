@@ -7,7 +7,6 @@
         <div slot="tab-text">{{ item.name }}</div>
       </tab-bar-item>
     </tab-bar>
-    <router-view></router-view>
   </div>
 </template>
 

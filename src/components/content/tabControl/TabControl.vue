@@ -26,6 +26,7 @@ export default {
   methods:{
     tabClick(index) {
       this.currIndex = index
+      this.$emit('tabControl',index)
     }
   }
 }
@@ -37,6 +38,7 @@ export default {
     text-align: center;
     height: 40px;
     line-height: 40px;
+    background-color: #fff;
   }
   .tab-control div{
     flex: 1;
