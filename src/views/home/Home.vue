@@ -3,19 +3,25 @@
     <nav-bar class="home-nav-bar">
       <div slot="center">购物街</div>
     </nav-bar>
+    <tab-control class="tab-show"
+                 :tabs="['流行','新款','精选']"
+                 @tabControl="tabControl" ref="tabContCopy" v-show="isSticky"></tab-control>
     <scroll class="content" ref="scroll"
             :probe-type="3"
             :pull-up-load="true"
             @scrollPosition="scrollPosition"
             @pullUpLoad="pullUpLoad">
-      <home-swiper :banners="banners"></home-swiper>
+      <home-swiper :banners="banners" @swiperLoad="swiperLoad"></home-swiper>
       <home-recommend :recommends="recommends"></home-recommend>
       <home-features></home-features>
-      <tab-control class="tab-control" :tabs="['流行','新款','精选']" @tabControl="tabControl"></tab-control>
+      <tab-control class="tab-control"
+                   :tabs="['流行','新款','精选']"
+                   @tabControl="tabControl" ref="tabCont"></tab-control>
       <home-goods :goods="goods[tabCType].list"></home-goods>
     </scroll>
     <back-top @click.native="topClick" v-show="isShow"></back-top>
   </div>
+
 </template>
 
 <script>
@@ -50,6 +56,9 @@ export default {
   data() {
     return {
       isShow:false,
+      isSticky: false,
+      rPos:0,
+      tabCoffset:'',
       tabCType:'pop',
       banners: '',
       recommends: '',
@@ -85,16 +94,23 @@ export default {
           this.tabCType = 'sell'
               break
       }
+      this.$refs.tabContCopy.currIndex = index
+      this.$refs.tabCont.currIndex = index
     },
     topClick() {
       this.$refs.scroll.scrollTo(0,0,300)
     },
     scrollPosition(position) {
+      this.rPos = position
       this.isShow = (-position.y)> 1000
+      this.isSticky = (-position.y > this.tabCoffset) ? true : false
     },
     pullUpLoad() {
       this.HomeGoodsData(this.tabCType)
       this.$refs.scroll.finishPullUp()
+    },
+    swiperLoad() {
+      this.tabCoffset = this.$refs.tabCont.$el.offsetTop
     },
     /**
      * 网络请求相关
@@ -152,7 +168,6 @@ export default {
 
 <style scoped>
   .home{
-    padding-top: 44px;
     position: relative;
     height: 100vh;
   }
@@ -171,5 +186,12 @@ export default {
     bottom: 49px;
     left: 0;
     right: 0;
+  }
+  .tab-show{
+    position: fixed;
+    top: 44px;
+    left: 0;
+    right: 0;
+    z-index: 9;
   }
 </style>

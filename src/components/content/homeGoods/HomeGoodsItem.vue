@@ -1,6 +1,6 @@
 <template>
   <div class="goods-item">
-    <a :href="goodsItem.link">
+    <a @click="goodsLink">
       <img :src="goodsItem.show.img" alt="" @load="itemLoad">
     </a>
     <div class="goods-item-title">{{goodsItem.title}}</div>
@@ -25,6 +25,20 @@ export default {
   methods: {
     itemLoad() {
       this.$bus.$emit('goodsImgLoaded')
+    },
+    goodsLink() {
+      if(this.$route.path !== '/detail'){
+        this.$router.push({
+          path: '/detail',
+          query: {
+            iid: this.goodsItem.iid
+          }
+        })
+      }
+      // if(this.$route.path !== '/home/detail'){
+      //   this.$router.push('/home/detail')
+      // }
+      // console.log('aa');
     }
   }
 }

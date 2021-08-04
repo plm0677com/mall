@@ -8,6 +8,7 @@ const Home = ()=>import('views/home/Home')
 const Channel = ()=>import('views/channel/Channel')
 const Cart = ()=>import('views/cart/Cart')
 const Profile = ()=>import('views/profile/Profile')
+const Detail = ()=>import('views/detail/Detail')
 
 const router = new VueRouter({
   routes: [
@@ -17,7 +18,10 @@ const router = new VueRouter({
     },
     {
       path: '/home',
-      component: Home
+      component: Home,
+      children:[
+
+      ]
     },
     {
       path: '/channel',
@@ -30,7 +34,12 @@ const router = new VueRouter({
     {
       path: '/profile',
       component: Profile
+    },
+    {
+      path: '/detail',
+      component: Detail
     }
+
   ],
   mode: 'history'
 })

@@ -41,6 +41,7 @@ export default {
 
       this.scroll.on('scroll', (position)=>{ //监听滚动事件
         this.$emit('scrollPosition', position)
+        //604
       })
 
       this.scroll.on('pullingUp',()=> {  //当底部下拉距离超过阈值
@@ -55,7 +56,6 @@ export default {
       this.scroll.finishPullUp()
     },
     refresh() {
-      console.log('----');
       this.scroll.refresh()
     }
   },
