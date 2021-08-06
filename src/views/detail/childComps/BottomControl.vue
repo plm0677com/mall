@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: "BottomControl",
   props:{
@@ -35,8 +36,16 @@ export default {
     }
   },
   methods: {
+    // vuex 映射
+    ...mapActions([
+      'getCartInfo'
+    ]),
+    // 业务逻辑
     cartClick() {
-      this.$store.commit('getCartInfo',this.cartInfo)
+      const cartInfo = this.cartInfo
+      this.getCartInfo(cartInfo).then(res=>{
+        this.$toast.show(res,2000)
+      })
     }
   }
 }

@@ -2,20 +2,25 @@
   <div>
     <detail-bar></detail-bar>
     <bottom-control :cart-info="cartInfo"></bottom-control>
+    <toast></toast>
   </div>
 </template>
 
 <script>
 import DetailBar from "@/views/detail/childComps/DetailBar";
 import BottomControl from "@/views/detail/childComps/BottomControl";
+import Toast from "@/components/common/toast/Toast";
 
 import {detailData} from "@/network/detail";
+
+
 
 export default {
   name: "Detail",
   components:{
     DetailBar,
-    BottomControl
+    BottomControl,
+    Toast
   },
   data() {
       return {
